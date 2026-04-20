@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bellari SMP</title>
+
+<style>
+:root{
+  --accent:#00ff88;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
+
+body{
+  color:white;
+  overflow-x:hidden;
+}
+
+/* YOUTUBE BACKGROUND */
+.bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-2;
+  pointer-events:none;
+}
+
+/* DARK OVERLAY */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  z-index:-1;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 25px;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
+}
+nav h2{color:var(--accent);}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero h1{
+  font-size:70px;
+  color:var(--accent);
+  text-shadow:0 0 25px var(--accent);
+}
+.hero p{margin:8px 0;font-size:18px;}
+
+.btn{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  cursor:pointer;
+  background:var(--accent);
+  color:black;
+  border-radius:8px;
+  transition:.3s;
+}
+.btn:hover{
+  box-shadow:0 0 20px var(--accent);
+}
+
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+.card{
+  display:inline-block;
+  width:220px;
+  margin:10px;
+  padding:20px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  border-radius:10px;
+  border:1px solid rgba(0,255,136,0.3);
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 15px var(--accent);
+}
+
+/* TEAM HIGHLIGHT */
+.team span{
+  color:var(--accent);
+  font-weight:bold;
+}
+
+/* FOOTER */
+footer{
+  padding:20px;
+  background:rgba(0,0,0,0.6);
+}
+</style>
+</head>
+
+<body>
+
+<!-- YOUTUBE BACKGROUND -->
+<iframe class="bg-video"
+src="https://www.youtube.com/embed/58YjsK8NYPE?autoplay=1&mute=1&loop=1&playlist=58YjsK8NYPE&controls=0&showinfo=0&modestbranding=1"
+frameborder="0"
+allow="autoplay; fullscreen">
+</iframe>
+
+<div class="overlay"></div>
+
+<nav>
+  <h2>BELLARI SMP</h2>
+</nav>
+
+<div class="hero">
+  <h1>BELLARI SMP</h1>
+  <p>High-Speed Minecraft SMP Server</p>
+  <p id="status">Checking server...</p>
+  <p>IP: power.hexacraft.fun:25579</p>
+
+  <button class="btn" onclick="copyIP()">Copy IP</button>
+  <button class="btn" onclick="window.location.href='https://discord.com/channels/1358422608118288576/1478640801968820344'">Discord</button>
+  <button class="btn" onclick="window.location.href='https://www.youtube.com/@ObsiVortex'">YouTube</button>
+</div>
+
+<div class="section">
+  <h2>Features</h2>
+  <div class="card">100 Player Slots</div>
+  <div class="card">Java + Bedrock</div>
+  <div class="card">Smooth Gameplay</div>
+  <div class="card">Malayalam Community</div>
+</div>
+
+<div class="section team">
+  <h2>Team</h2>
+  <p>👑 Owners: <span>PowerKingsYT</span>, <span>ObsiVortex</span></p>
+  <p>⚙ Developers: <span>Practice</span>, <span>MKPC</span></p>
+</div>
+
+<footer>
+  <p>© Bellari SMP</p>
+</footer>
+
+<script>
+/* SERVER STATUS */
+fetch("https://api.mcsrvstat.us/2/power.hexacraft.fun:25579")
+.then(r=>r.json())
+.then(d=>{
+ document.getElementById("status").innerText=
+ d.online ? "🟢 Online - "+d.players.online+" players"
+ : "🔴 Offline";
+});
+
+/* COPY IP */
+function copyIP(){
+ navigator.clipboard.writeText("power.hexacraft.fun:25579");
+ alert("IP Copied!");
+}
+</script>
+
+</body>
+</html>
